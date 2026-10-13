@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>AI 选词翻译设置</title>
+    <link rel="stylesheet" href="options.css">
+  </head>
+  <body>
+    <main class="page">
+      <header class="page-header">
+        <p class="eyebrow">AI 选词翻译</p>
+        <h1>连接你的翻译模型</h1>
+        <p class="intro">选中网页文字后，点击旁边的“翻译”按钮即可调用配置的 API。设置只保存在当前浏览器中。</p>
+      </header>
+
+      <form id="settings-form" class="settings-form">
+        <section class="form-section">
+          <h2>API 配置</h2>
+          <label>
+            <span>API Base URL</span>
+            <input id="base-url" name="baseUrl" type="url" placeholder="https://api.openai.com/v1" required>
+            <small>填写兼容 OpenAI Chat Completions 的地址；也可以直接填写完整的 /chat/completions 地址。</small>
+          </label>
+          <label>
+            <span>API Key</span>
+            <div class="input-with-action">
+              <input id="api-key" name="apiKey" type="password" placeholder="sk-..." autocomplete="off" required>
+              <button id="toggle-api-key" class="secondary-button" type="button" aria-pressed="false">查看 API Key</button>
+            </div>
+            <small>Key 只保存在本地扩展存储中。不要在不信任的设备上使用高权限 Key。</small>
+          </label>
+          <label>
+            <span>模型名称</span>
+            <input id="model" name="model" type="text" placeholder="gpt-4o-mini" required>
+          </label>
+        </section>
+
+        <section class="form-section">
+          <h2>翻译偏好</h2>
+          <div class="two-columns">
+            <label>
+              <span>源语言</span>
+              <select id="source-language" name="sourceLanguage">
+                <option>自动检测</option>
+                <option>中文</option>
+                <option>英语</option>
+                <option>日语</option>
+                <option>韩语</option>
+                <option>法语</option>
+                <option>德语</option>
+                <option>西班牙语</option>
+              </select>
+            </label>
+            <label>
+              <span>非中文文本输出语言</span>
+              <select id="target-language" name="targetLanguage">
+                <option>简体中文</option>
+                <option>繁体中文</option>
+                <option>英语</option>
+                <option>日语</option>
+                <option>韩语</option>
+                <option>法语</option>
+                <option>德语</option>
+                <option>西班牙语</option>
+              </select>
+            </label>
+          </div>
+          <div class="language-routing">
+            <label class="toggle-row" for="translate-chinese">
+              <span class="toggle-copy">
+                <strong>中文自动翻译为其他语言</strong>
+                <small>检测到选区主要为中文时，使用下方单独设置的输出语言。</small>
+              </span>
+              <input id="translate-chinese" name="translateChineseToOtherLanguage" type="checkbox">
+            </label>
+            <label id="chinese-target-setting">
+              <span>中文文本输出语言</span>
+              <select id="chinese-target-language" name="chineseTargetLanguage">
+                <option>英语</option>
+                <option>繁体中文</option>
+                <option>日语</option>
+                <option>韩语</option>
+                <option>法语</option>
+                <option>德语</option>
+                <option>西班牙语</option>
+                <option>葡萄牙语</option>
+                <option>意大利语</option>
+                <option>俄语</option>
+              </select>
+            </label>
+          </div>
+          <label>
+            <span>翻译风格</span>
+            <textarea id="style" name="style" rows="3">自然、准确，保留原文段落结构</textarea>
+          </label>
+        </section>
+
+        <div class="form-footer">
+          <button class="primary-button" type="submit">保存设置</button>
+          <span id="save-status" role="status"></span>
+        </div>
+      </form>
+
+      <footer class="notice">
+        <strong>隐私提示</strong>
+        <p>选中的文字会发送到你填写的 API 服务商。插件不会向其他服务器上传文字或 API Key。</p>
+      </footer>
+    </main>
+    <script src="options.js"></script>
+  </body>
+</html>
