@@ -1,0 +1,34 @@
+{
+  "manifest_version": 3,
+  "name": "AI 选词翻译（含二维码识别）",
+  "version": "0.3.0",
+  "description": "选中文字后调用你配置的 AI API 进行翻译，也可以从图片右键菜单识别二维码。",
+  "permissions": [
+    "storage",
+    "contextMenus"
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  "background": {
+    "service_worker": "src/background.js"
+  },
+  "action": {
+    "default_title": "打开 AI 选词翻译设置"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": [
+        "src/content.js"
+      ],
+      "run_at": "document_idle"
+    }
+  ],
+  "options_ui": {
+    "page": "options/options.html",
+    "open_in_tab": true
+  }
+}
